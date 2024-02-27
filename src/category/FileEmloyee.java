@@ -1,6 +1,6 @@
 package category;
 
-import Model.Employee;
+import model.Employee;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -49,15 +49,5 @@ public class FileEmloyee {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        FileEmloyee fileEmloyee = new FileEmloyee();
-        List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(new Employee("A1","nhon","a",2,"alo"));
-        fileEmloyee.writeEmployee(employeeList);
-
-
-
     }
 }

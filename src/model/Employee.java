@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Employee {
     private String id;
@@ -66,7 +66,7 @@ public class Employee {
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", pass='" + pass + '\'' +
-                '}';
+                '}'+"\n";
     }
 
 

@@ -1,6 +1,6 @@
 package category;
 
-import Model.User;
+import model.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -47,5 +47,4 @@ public class FileUser {
             throw new RuntimeException();
         }
     }
-
 }
