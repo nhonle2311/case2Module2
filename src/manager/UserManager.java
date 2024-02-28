@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserManager implements IManager {
+public class UserManager implements IManager,Login {
     private final FileUser fileUser = new FileUser();
     private final List<User> userList = fileUser.readFileUser() ;
     private Scanner scanner = new Scanner(System.in);
@@ -65,9 +65,25 @@ public class UserManager implements IManager {
             System.out.println("id not found");
         }
     }
+    @Override
+    public boolean loginByIDPasword() {
+        fileUser.readFileUser();
+        System.out.println("Enter Id");
+        String Id = scanner.nextLine();
+        System.out.println("Enter Password");
+        String password = scanner.nextLine();
+        for (User user : userList){
+            if (user.getId().equals(Id) && user.getPass().equals(password)){
+                System.out.println("Login Success");
+                return true;
+            }
+        }
+        System.out.println("ID or Password Wrong");
+        return false;
+    }
 
-    public static void main(String[] args) {
-        UserManager userManager = new UserManager();
-
+    @Override
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        return false;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import category.FileEmloyee;
-public class EmployeeManager implements IManager<Employee>{
+public class EmployeeManager implements IManager<Employee>,Login{
     private final Scanner scanner = new Scanner(System.in);
     private final FileEmloyee fileEmloyee = new FileEmloyee();
     private final List<Employee> employeeList = fileEmloyee.readEmployee();
@@ -57,9 +57,25 @@ public class EmployeeManager implements IManager<Employee>{
             }
         }
     }
+    @Override
+    public boolean loginByIDPasword() {
+        fileEmloyee.readEmployee();
+        System.out.println("Enter ID");
+        String Id = scanner.nextLine();
+        System.out.println("Enter password");
+        String password = scanner.nextLine();
+        for (Employee employee: employeeList){
+            if (employee.getId().equals(Id) && employee.getPass().equals(password)){
+                System.out.println("Login Success");
+                return true;
+            }
+        }
+        System.out.println("ID or Password wrong");
+        return false;
+    }
 
-    public static void main(String[] args) {
-        EmployeeManager employeeManager = new EmployeeManager();
-        employeeManager.edit();
+    @Override
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        return false;
     }
 }
