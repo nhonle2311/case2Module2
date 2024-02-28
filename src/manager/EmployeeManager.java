@@ -23,7 +23,20 @@ public class EmployeeManager implements IManager,Login{
 
     @Override
     public void add() {
-        employeeList.add((Employee) employeeList);
+        System.out.println("Enter new employee details:");
+        System.out.print("ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Phone: ");
+        int phone = Integer.parseInt(scanner.nextLine());
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        Employee newEmployee = new Employee(id, name, email, phone, password);
+        employeeList.add(newEmployee);
         fileEmloyee.writeEmployee(employeeList);
     }
 

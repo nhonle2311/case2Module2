@@ -33,6 +33,8 @@ public class Main {
                         System.out.println("3: Edit computer information");
                         System.out.println("4: Delete a computer");
                         System.out.println("5: Recharge");
+                        System.out.println("6: Add new user");
+                        System.out.println("7: List user");
                         choiceEmployee = scanner.nextInt();
                         switch (choiceEmployee){
                             case 1:
@@ -47,6 +49,12 @@ public class Main {
                                 computerManager.delete();
                             case 5:
                                 employeeManager.recharge();
+                                break;
+                            case 6:
+                                userManager.add();
+                                break;
+                            case 7:
+                                userManager.display();
                             case 0:
                                 break;
                             default:
@@ -69,7 +77,7 @@ public class Main {
                         choiceUser = scanner.nextInt();
                         switch (choiceUser){
                             case 1:
-
+                                System.out.println("wait");
                         }
                     }
                 case 0:

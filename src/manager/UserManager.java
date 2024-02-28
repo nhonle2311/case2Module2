@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class UserManager implements IManager,Login {
     private final FileUser fileUser = new FileUser();
     private final List<User> userList = fileUser.readFileUser() ;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     @Override
     public void display() {
         System.out.println(userList);
@@ -88,8 +88,13 @@ public class UserManager implements IManager,Login {
         String password = scanner.nextLine();
         for (User user : userList){
             if (user.getId().equals(Id) && user.getPass().equals(password)){
-                System.out.println("Login Success");
-                return true;
+                if (user.getBalance() > 0){
+                    System.out.println("Login Success");
+                    return true;
+                }else {
+                    System.out.println("Insufficient balance. Please recharge your account");
+                    return false;
+                }
             }
         }
         System.out.println("ID or Password Wrong");
@@ -102,8 +107,9 @@ public class UserManager implements IManager,Login {
         return false;
     }
 
+
     public static void main(String[] args) {
         UserManager userManager = new UserManager();
-        userManager.add();
+        userManager.loginByIDPasword();
     }
 }
