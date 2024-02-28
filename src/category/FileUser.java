@@ -22,7 +22,7 @@ public class FileUser {
                 user.setName(data[1]);
                 user.setEmail(data[2]);
                 user.setPhone(Integer.parseInt(data[3]));
-                user.setPass(data[5]);
+                user.setPass(data[4]);
                 users.add(user);
             }
             bufferedReader.close();

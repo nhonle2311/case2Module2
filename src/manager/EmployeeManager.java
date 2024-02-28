@@ -36,7 +36,7 @@ public class EmployeeManager implements IManager<Employee>{
                 employee1.setEmail(scanner.nextLine());
                 System.out.println("Enter Phone");
                 employee1.setPhone(Integer.parseInt(scanner.nextLine()));
-                System.out.println("Enter Pass");
+                 System.out.println("Enter Pass");
                 employee1.setPass(scanner.nextLine());
                 fileEmloyee.writeEmployee(employeeList);
             }
