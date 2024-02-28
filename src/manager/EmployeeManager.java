@@ -23,7 +23,7 @@ public class EmployeeManager implements IManager<Employee>{
     }
 
     @Override
-    public void edit(String Id, Employee employee) {
+    public void edit() {
         System.out.println("Enter Id");
         String inputID = scanner.nextLine();
         for (Employee employee1 : employeeList){
@@ -45,7 +45,7 @@ public class EmployeeManager implements IManager<Employee>{
 
 
     @Override
-    public void delete(String Id) {
+    public void delete() {
         System.out.println("Enter ID");
         String inputId = scanner.nextLine();
         for (Employee employee : employeeList){
@@ -60,6 +60,6 @@ public class EmployeeManager implements IManager<Employee>{
 
     public static void main(String[] args) {
         EmployeeManager employeeManager = new EmployeeManager();
-        employeeManager.delete("A2");
+        employeeManager.edit();
     }
 }

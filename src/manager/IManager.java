@@ -7,8 +7,8 @@ import java.util.List;
 public interface IManager<E> {
     void display();
     void add(E e);
-    void edit(String Id, E e);
+    void edit();
 
-    void delete(String Id);
+    void delete();
 
 }
