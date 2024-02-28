@@ -4,9 +4,9 @@ import model.Employee;
 
 import java.util.List;
 
-public interface IManager<E> {
+public interface IManager {
     void display();
-    void add(E e);
+    void add();
     void edit();
 
     void delete();

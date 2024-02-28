@@ -6,16 +6,26 @@ public class User{
     private String email;
     private int phone;
     private String pass;
+    private double balance;
 
     public User() {
     }
 
-    public User(String id, String name, String email, int phone, String pass) {
+    public User(String id, String name, String email, int phone, String pass, double balance) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.pass = pass;
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public String getId() {

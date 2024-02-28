@@ -1,15 +1,20 @@
 package manager;
 
+import category.FileUser;
 import model.Employee;
 
 import java.util.List;
 import java.util.Scanner;
 
 import category.FileEmloyee;
-public class EmployeeManager implements IManager<Employee>,Login{
+import model.User;
+
+public class EmployeeManager implements IManager,Login{
     private final Scanner scanner = new Scanner(System.in);
     private final FileEmloyee fileEmloyee = new FileEmloyee();
     private final List<Employee> employeeList = fileEmloyee.readEmployee();
+    private final FileUser fileUser = new FileUser();
+    private final List<User> userList = fileUser.readFileUser();
 
     @Override
     public void display() {
@@ -17,8 +22,8 @@ public class EmployeeManager implements IManager<Employee>,Login{
     }
 
     @Override
-    public void add(Employee employee) {
-        employeeList.add(employee);
+    public void add() {
+        employeeList.add((Employee) employeeList);
         fileEmloyee.writeEmployee(employeeList);
     }
 
@@ -77,5 +82,24 @@ public class EmployeeManager implements IManager<Employee>,Login{
     @Override
     public boolean changePassword(String username, String oldPassword, String newPassword) {
         return false;
+    }
+    public void recharge(){
+        System.out.println("Enter Id User to Recharge");
+        String id = scanner.nextLine();
+        boolean find = false;
+        System.out.println("Enter Amount To Recharge");
+        double amount = scanner.nextDouble();
+        for (User user: userList){
+            if (user.getId().equals(id)){
+                user.setBalance(user.getBalance()+amount);
+                fileUser.writeUserFile(userList);
+                System.out.println("Recharge successful. New balance for user " + user.getName() + ": " + user.getBalance());
+                find = true;
+                break;
+            }
+        }
+        if (!find){
+            System.out.println("User Not Find");
+        }
     }
 }

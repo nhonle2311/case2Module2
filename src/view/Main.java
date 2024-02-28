@@ -1,9 +1,10 @@
 package view;
 
+import manager.ComputerManager;
 import manager.EmployeeManager;
 import manager.UserManager;
+import model.Computer;
 import model.User;
-
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,7 @@ public class Main {
         final Scanner scanner = new Scanner(System.in);
         EmployeeManager employeeManager = new EmployeeManager();
         UserManager userManager = new UserManager();
+        ComputerManager computerManager = new ComputerManager();
         System.out.println("===== Choose Account Login =====");
         System.out.println("1: Employee");
         System.out.println("2: User");
@@ -23,11 +25,53 @@ public class Main {
                 case 1:
                     System.out.println("Login Account Employee");
                     employeeManager.loginByIDPasword();
+                    int choiceEmployee;
+                    while (true){
+                        System.out.println("Choose Action");
+                        System.out.println("1: List of available computers ");
+                        System.out.println("2: Add new computer");
+                        System.out.println("3: Edit computer information");
+                        System.out.println("4: Delete a computer");
+                        System.out.println("5: Recharge");
+                        choiceEmployee = scanner.nextInt();
+                        switch (choiceEmployee){
+                            case 1:
+                                computerManager.display();
+                                break;
+                            case 2:
+                                computerManager.add();
+                                break;
+                            case 3:
+                                computerManager.edit();
+                            case 4:
+                                computerManager.delete();
+                            case 5:
+                                employeeManager.recharge();
+                            case 0:
+                                break;
+                            default:
+                                System.out.println("Invalid choice");
+                                break;
+                        }
+                        if (choiceEmployee == 0 ){
+                            break;
+                        }
+                    }
                     break;
+
                 case 2:
                     System.out.println("Login Account User");
                     userManager.loginByIDPasword();
-                    break;
+                    int choiceUser;
+                    while (true){
+                        System.out.println("Choose Action");
+                        System.out.println("1: Recharge Money");
+                        choiceUser = scanner.nextInt();
+                        switch (choiceUser){
+                            case 1:
+
+                        }
+                    }
                 case 0:
                     System.exit(0);
             }

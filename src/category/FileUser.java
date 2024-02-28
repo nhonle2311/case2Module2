@@ -23,6 +23,7 @@ public class FileUser {
                 user.setEmail(data[2]);
                 user.setPhone(Integer.parseInt(data[3]));
                 user.setPass(data[4]);
+                user.setBalance(Double.parseDouble(data[5]));
                 users.add(user);
             }
             bufferedReader.close();
@@ -39,7 +40,7 @@ public class FileUser {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (User user: users){
-                bufferedWriter.write(user.getId()+","+user.getName()+","+user.getEmail()+","+user.getPhone()+","+user.getPass());
+                bufferedWriter.write(user.getId()+","+user.getName()+","+user.getEmail()+","+user.getPhone()+","+user.getPass()+","+user.getBalance());
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();

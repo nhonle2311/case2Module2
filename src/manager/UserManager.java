@@ -17,8 +17,22 @@ public class UserManager implements IManager,Login {
     }
 
     @Override
-    public void add(Object o) {
-        userList.add((User) o);
+    public void add() {
+        System.out.println("Enter new user details:");
+        System.out.print("ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Phone: ");
+        int phone = Integer.parseInt(scanner.nextLine());
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+        System.out.println("Balance: ");
+        double balance = scanner.nextDouble();
+        User newUser = new User(id, name, email, phone, password,balance);
+        userList.add(newUser);
         fileUser.writeUserFile(userList);
     }
 
@@ -82,8 +96,14 @@ public class UserManager implements IManager,Login {
         return false;
     }
 
+
     @Override
     public boolean changePassword(String username, String oldPassword, String newPassword) {
         return false;
+    }
+
+    public static void main(String[] args) {
+        UserManager userManager = new UserManager();
+        userManager.add();
     }
 }
