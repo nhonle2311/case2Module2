@@ -3,14 +3,17 @@ package manager;
 import category.FileUser;
 import model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class UserManager implements IManager,Login {
     private final FileUser fileUser = new FileUser();
     private final List<User> userList = fileUser.readFileUser() ;
     private final Scanner scanner = new Scanner(System.in);
+    private final double feePerSecond  = 1000.0;
+    private Thread timeThread;
+
     @Override
     public void display() {
         System.out.println(userList);
@@ -90,9 +93,12 @@ public class UserManager implements IManager,Login {
             if (user.getId().equals(Id) && user.getPass().equals(password)){
                 if (user.getBalance() > 0){
                     System.out.println("Login Success");
+                    System.out.println("Your Balance: " + user.getBalance());
+                    deductBalance(user);
                     return true;
                 }else {
                     System.out.println("Insufficient balance. Please recharge your account");
+                    logOut();
                     return false;
                 }
             }
@@ -105,6 +111,39 @@ public class UserManager implements IManager,Login {
     @Override
     public boolean changePassword(String username, String oldPassword, String newPassword) {
         return false;
+    }
+    public void logOut(){
+       if (timeThread != null && timeThread.isAlive()){
+           timeThread.interrupt();
+       }
+        System.out.println("Logout success");
+    }
+    private void deductBalance(User user) {
+        long startTime = System.currentTimeMillis(); // Ghi lại thời gian bắt đầu
+        timeThread = new Thread(() -> {
+            try {
+                double totalDeductedAmount = 0.0; // Tổng số tiền đã trừ
+                while (!Thread.currentThread().isInterrupted()) {
+                    TimeUnit.SECONDS.sleep(1); // Trừ phí mỗi giây
+                    long elapsedMilliseconds = System.currentTimeMillis() - startTime; // Số milliseconds đã trôi qua
+                    double amount = feePerSecond * (elapsedMilliseconds / 1000.0); // Số tiền cần trừ trong 1 giây
+                    double deductedAmount = amount - totalDeductedAmount; // Số tiền đã trừ trong lần lặp này
+                    totalDeductedAmount += deductedAmount; // Cập nhật tổng số tiền đã trừ
+                    if (user.getBalance() > deductedAmount) {
+                        user.setBalance(user.getBalance() - deductedAmount); // Trừ số tiền đã trừ khỏi số dư của người dùng
+                        System.out.printf("Balance of %s has been deducted by %.2f VNĐ. Remaining balance: %.2f VNĐ\n",
+                                user.getId(), deductedAmount, user.getBalance());
+                    } else {
+                        System.out.println("Insufficient balance. Please recharge your account for: " + user.getId());
+                        timeThread.interrupt();
+                    }
+                }
+                fileUser.writeUserFile(userList);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        timeThread.start();
     }
 
 

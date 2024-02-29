@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUser {
-    private final List<User> users = new ArrayList<>();
     private final String fileUser = "C:\\Users\\THINKPAD\\Documents\\CodeGym\\module2-2\\Arr\\Case2Module2\\user.csv";
     public List<User> readFileUser (){
+        List<User> users = new ArrayList<>();
         try {
             File file = new File(fileUser);
             FileReader fileReader = new FileReader(file);

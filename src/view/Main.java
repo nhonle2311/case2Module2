@@ -73,7 +73,10 @@ public class Main {
                     int choiceUser;
                     while (true){
                         System.out.println("Choose Action");
-                        System.out.println("1: Recharge Money");
+                        System.out.println("1: Show balance");
+                        System.out.println("2: Edit Acout");
+                        System.out.println("2: Edit User");
+
                         choiceUser = scanner.nextInt();
                         switch (choiceUser){
                             case 1:
