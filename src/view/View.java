@@ -3,30 +3,30 @@ package view;
 import manager.ComputerManager;
 import manager.EmployeeManager;
 import manager.UserManager;
-import model.Computer;
-import model.User;
+
 import java.util.Scanner;
 
-public class Main {
+public class View {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         EmployeeManager employeeManager = new EmployeeManager();
         UserManager userManager = new UserManager();
         ComputerManager computerManager = new ComputerManager();
-        while (true){
-        System.out.println("===== Choose Account Login =====");
-        System.out.println("1: Employee");
-        System.out.println("2: User");
-        int choice;
-        while (true){
+        while (true) {
+            System.out.println("===== Choose Account Login =====");
+            System.out.println("1: Employee");
+            System.out.println("2: User");
+
+            int choice;
             System.out.println("Enter Number");
             choice = scanner.nextInt();
-            switch (choice){
+
+            switch (choice) {
                 case 1:
                     System.out.println("Login Account Employee");
                     employeeManager.loginByIDPasword();
                     int choiceEmployee;
-                    while (true){
+                    while (true) {
                         System.out.println("Choose Action");
                         System.out.println("1: List of available computers ");
                         System.out.println("2: Add new computer");
@@ -36,8 +36,9 @@ public class Main {
                         System.out.println("6: Add new user");
                         System.out.println("7: List user");
                         System.out.println("0: Exit");
+
                         choiceEmployee = scanner.nextInt();
-                        switch (choiceEmployee){
+                        switch (choiceEmployee) {
                             case 1:
                                 computerManager.display();
                                 break;
@@ -64,23 +65,27 @@ public class Main {
                             default:
                                 System.out.println("Invalid choice. Please try again.");
                         }
-                        if (choiceEmployee == 0){
+
+                        if (choiceEmployee == 0) {
                             break;
                         }
                     }
                     break;
+
                 case 2:
                     System.out.println("Login Account User");
                     userManager.loginByIDPasword();
+
                     int choiceUser;
-                    while (true){
+                    while (true) {
                         System.out.println("Choose Action");
                         System.out.println("1: Edit Account");
                         System.out.println("2: Show Balance ");
-                        System.out.println("3: Oder");
+                        System.out.println("3: Order");
                         System.out.println("4: Logout");
+                        System.out.println("0: Back");
                         choiceUser = scanner.nextInt();
-                        switch (choiceUser){
+                        switch (choiceUser) {
                             case 1:
                                 userManager.edit();
                                 break;
@@ -90,29 +95,45 @@ public class Main {
                             case 3:
                                 System.out.println("Choose Action");
                                 System.out.println("1: Water 10000");
-                                System.out.println("2: cigarette 15000");
+                                System.out.println("2: Cigarette 15000");
                                 System.out.println("0: Exit");
-                                int choiceOder;
-                                while (true){
-                                    choiceOder = scanner.nextInt();
-                                    switch (choiceOder){
+
+                                int choiceOrder;
+                                while (true) {
+                                    choiceOrder = scanner.nextInt();
+                                    switch (choiceOrder) {
                                         case 1:
                                             userManager.orderSting();
                                             break;
                                         case 2:
                                             userManager.orderCigarette();
+                                            break;
+                                        case 0:
+                                            break;
                                         default:
                                             System.out.println("Invalid Choice");
                                     }
-                                    if (choiceOder == 0){
+
+                                    if (choiceOrder == 0) {
                                         break;
                                     }
                                 }
+                                break;
                             case 4:
                                 userManager.logOut();
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please try again.");
+                        }
+
+                        if (choiceUser == 0) {
+                            break;
                         }
                     }
-                }
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
     }

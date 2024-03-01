@@ -1,6 +1,6 @@
 package model;
 
-public class User{
+public class User implements Comparable<User>{
     private String id;
     private String name;
     private String email;
@@ -8,7 +8,7 @@ public class User{
     private String pass;
     private double balance;
 
-    public User() {
+    public User()  {
     }
 
     public User(String id, String name, String email, int phone, String pass, double balance) {
@@ -78,5 +78,10 @@ public class User{
                 ", pass='" + pass + '\'' +
                 ", balance=" + balance +
                 '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return Double.compare(this.balance, o.balance);
     }
 }

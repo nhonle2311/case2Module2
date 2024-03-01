@@ -30,18 +30,18 @@ public class ComputerManager implements IManager {
             System.out.println("Enter Number Computer Need Edit");
             int number = scanner.nextInt();
             boolean find = false;
-            for (Computer computer: computers){
-                if (computer.getNumber() == number){
+            for (Computer computer : computers) {
+                if (computer.getNumber() == number) {
                     System.out.println("Number Computer");
                     computer.setNumber(scanner.nextInt());
                     System.out.println("Status");
                     computer.setAvailable(scanner.nextBoolean());
                     fileComputer.writeComputer(computers);
+                    find = true; // Đặt biến find thành true khi tìm thấy máy tính cần sửa đổi
                     break;
                 }
-
             }
-            if (!find){
+            if (!find) {
                 System.out.println("Not Find Computer");
             }
         }
@@ -51,14 +51,15 @@ public class ComputerManager implements IManager {
             System.out.println("Enter Number Computer Need Delete");
             int number = scanner.nextInt();
             boolean find = false;
-            for (Computer computer: computers){
-                if (computer.getNumber() == number){
-                    computers.remove(computer);
+            for (int i = computers.size() - 1; i >= 0; i--) {
+                if (computers.get(i).getNumber() == number) {
+                    computers.remove(i);
                     fileComputer.writeComputer(computers);
+                    find = true;
                     break;
                 }
             }
-            if (!find){
+            if (!find) {
                 System.out.println("Not Find computer");
             }
         }
