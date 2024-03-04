@@ -35,6 +35,8 @@ public class View {
                         System.out.println("5: Recharge");
                         System.out.println("6: Add new user");
                         System.out.println("7: List user");
+                        System.out.println("8: List Employee");
+                        System.out.println("9: Add new employee");
                         System.out.println("0: Exit");
 
                         choiceEmployee = scanner.nextInt();
@@ -60,6 +62,11 @@ public class View {
                             case 7:
                                 userManager.display();
                                 break;
+                            case 8:
+                                employeeManager.display();
+                                break;
+                            case 9:
+                                employeeManager.add();
                             case 0:
                                 break;
                             default:
@@ -83,6 +90,7 @@ public class View {
                         System.out.println("2: Show Balance ");
                         System.out.println("3: Order");
                         System.out.println("4: Logout");
+                        System.out.println("5: Sort by balance");
                         System.out.println("0: Back");
                         choiceUser = scanner.nextInt();
                         switch (choiceUser) {
@@ -122,8 +130,11 @@ public class View {
                             case 4:
                                 userManager.logOut();
                                 break;
+                            case 5:
+                                userManager.sorByBalance();
                             default:
                                 System.out.println("Invalid choice. Please try again.");
+
                         }
 
                         if (choiceUser == 0) {

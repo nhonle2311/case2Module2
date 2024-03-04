@@ -130,13 +130,4 @@ public class EmployeeManager implements IManager,Login{
             System.out.println("User Not Find");
         }
     }
-
-
-
-    public static void main(String[] args) {
-        EmployeeManager employeeManager = new EmployeeManager();
-        employeeManager.add();
-    }
-
-
 }
